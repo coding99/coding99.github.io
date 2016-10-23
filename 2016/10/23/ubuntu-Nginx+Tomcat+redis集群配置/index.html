@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ubuntu-Nginx+Tomcat+redis集群配置 | bee.gs的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Nginx 安装及配置
+
+
+简介：中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。Ngnix是一个负载均衡服务器，其特点是占有内存少，并发能力强nginx一般用来做静态服务器，本身不具备动态解析功能，需要结合其它插件或软件使用，如tomcat,php等，在性能方面：如果，不做集群调优等情况下，tomcat（tomcat是动态服务器，需要依赖于jdk）一般支持并发100个左右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu-Nginx+Tomcat+redis集群配置">
+<meta property="og:url" content="http://yoursite.com/2016/10/23/ubuntu-Nginx+Tomcat+redis集群配置/index.html">
+<meta property="og:site_name" content="bee.gs的博客">
+<meta property="og:description" content="Nginx 安装及配置
+
+
+简介：中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。Ngnix是一个负载均衡服务器，其特点是占有内存少，并发能力强nginx一般用来做静态服务器，本身不具备动态解析功能，需要结合其它插件或软件使用，如tomcat,php等，在性能方面：如果，不做集群调优等情况下，tomcat（tomcat是动态服务器，需要依赖于jdk）一般支持并发100个左右">
+<meta property="og:updated_time" content="2016-10-23T14:57:54.891Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu-Nginx+Tomcat+redis集群配置">
+<meta name="twitter:description" content="Nginx 安装及配置
+
+
+简介：中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。Ngnix是一个负载均衡服务器，其特点是占有内存少，并发能力强nginx一般用来做静态服务器，本身不具备动态解析功能，需要结合其它插件或软件使用，如tomcat,php等，在性能方面：如果，不做集群调优等情况下，tomcat（tomcat是动态服务器，需要依赖于jdk）一般支持并发100个左右">
+  
+    <link rel="alternative" href="/atom.xml" title="bee.gs的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/assets/img/head/bee.ico">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/img/head/owl.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">bee.gs 博客</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">啦啦啦，啦啦啦，我是搬砖的小行家</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="weibo" target="_blank" href="http://blog.csdn.net/coding99" title="weibo">weibo</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+					<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">bee.gs 博客</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/img/head/owl.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">bee.gs 博客</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">啦啦啦，啦啦啦，我是搬砖的小行家</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/instagram">相册</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="weibo" target="_blank" href="http://blog.csdn.net/coding99" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+						<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-ubuntu-Nginx+Tomcat+redis集群配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu-Nginx+Tomcat+redis集群配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Nginx 安装及配置</p>
+<hr>
+<blockquote>
+<p>简介：<br>中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。Ngnix是一个负载均衡服务器，其特点是占有内存少，并发能力强<br>nginx一般用来做静态服务器，本身不具备动态解析功能，需要结合其它插件或软件使用，如tomcat,php等，在性能方面：如果，不做集群调优等情况下，tomcat（tomcat是动态服务器，需要依赖于jdk）一般支持并发100个左右，而nginx在静态方面可以达到几万并发。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<blockquote>
+<p>nginx(下载：<a href="http://nginx.org/en/download.html)nginx-1.9.3.tar.gz" target="_blank" rel="external">http://nginx.org/en/download.html)nginx-1.9.3.tar.gz</a></p>
+<p>模块依赖性<br>gzip模块需要 zlib 库( 下载: <a href="http://www.zlib.net/)zlib-1.2.8.tar.gz" target="_blank" rel="external">http://www.zlib.net/)zlib-1.2.8.tar.gz</a> ：<br>gzip可以加快我们网站打开的速度，原理是通过服务器压缩，客户端浏览器快速解压，大大的节省了网站的流量，提高了网页打开的速度，<br>但与此同时也会增加cpu的开销。<br>rewrite模块需要 pcre 库 ( 下载: <a href="http://www.pcre.org/" target="_blank" rel="external">http://www.pcre.org/</a>) pcre-8.38.tar.gz ：<br>rewrite主要时实现url的重写,通过pcre的perl兼容正则表达式进行匹配，通过rewrite规则，可实现规范的URL，或者动态的URL地址需要伪装成静态的HTML，便于搜索引擎抓到，旧URL可以通过rewrite跳转到新URL上。<br>ssl 功能需要openssl库( 下载: <a href="http://www.openssl.org/" target="_blank" rel="external">http://www.openssl.org/</a> )openssl-1.1.0.tar.gz：<br>openssl可以生成数字证书，自带功能加密功能，增加nginx的ssl安全性。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">安装：</div><div class="line">sudo su切换到root用户</div><div class="line">1、下载完包后，我们把它们移动到一个nginx的文件夹里(mv  openssl-1.1.0.tar.gz nginx-1.9.3.tar.gz pcre-8.38.tar.gz zlib-1.2.8.tar.gz /opt/nginx)，再解压（tar -zxvf openssl-1.1.0.tar.gz nginx-1.9.3.tar.gz pcre-8.38.tar.gz zlib-1.2.8.tar.gz）</div><div class="line">2、安装pcre（cd pcre-8.38 ./configure  make&amp;make install）</div><div class="line">3、安装zlib（cd zlib-1.2.8 ./configure  make&amp;make install）</div><div class="line">4、安装openssl（cd openssl-1.1.0 ./config  make&amp;make install）</div><div class="line">5、安装nginx（cd nginx-1.9.3  ./configure  make&amp;make install） 执行./configure如果提示找不到上面安装的相关模块时，则可以使用一下命令</div><div class="line">用--with-openssl=&lt;openssl_dir&gt;、--with-pcre=&lt;pcre_dir&gt;、--with-zlib=&lt;zlib_dir&gt;指定依赖的模块目录。如./configure --width-openssl=/opt/nginx</div><div class="line">/nginx-1.9.3 在make&amp;make install, 如果编译通过，则默认安装即可。</div><div class="line"></div><div class="line"></div><div class="line">使用：(注意，nignx安装后的使用目录是/usr/local/nginx/)下面的说明用开始安装的目录也行。</div><div class="line"></div><div class="line">我们切换到这个目录下，通过./nginx启动nginx服务器，浏览器输入http://localhost,显示以下信息，则安装成功。</div><div class="line"></div><div class="line">如果要要重启nginx，使用./nginx -s reload即可</div><div class="line">关闭方式有以下几种</div><div class="line"></div><div class="line">1、直接输入 ./nginx -s stop</div><div class="line"></div><div class="line">2、 查询nginx主进程号</div><div class="line"></div><div class="line">　　ps -ef | grep nginx</div><div class="line"></div><div class="line">　　从容停止   kill -QUIT 主进程号</div><div class="line"></div><div class="line">　　快速停止   kill -TERM 主进程号</div><div class="line"></div><div class="line">　　强制停止   kill -9 nginx</div><div class="line"></div><div class="line">若nginx.conf配置了pid文件路径，如果没有，则在logs目录下</div><div class="line"></div><div class="line">kill -信号类型 &apos;/usr/local/nginx/logs/nginx.pid</div><div class="line"></div><div class="line">判断配置文件是否正确可用./nginx -t</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">配置文件介绍：</div><div class="line"></div><div class="line"></div><div class="line">除了nginx.conf，其余配置文件，一般只需要使用默认提供即可。</div><div class="line"></div><div class="line">nginx.conf</div><div class="line"></div><div class="line">在conf文件下的nginx.conf时主要配置文件，其内容如上图：</div><div class="line">worker_process表示工作进程的数量，一般设置为cpu的核数（上图没截取到）</div><div class="line">worker_connections表示每个工作进程的最大连接数（上图没截取到）</div><div class="line">     server&#123;&#125;块定义了虚拟主机</div><div class="line"> listener 监听端口，默认为80</div><div class="line"> server_name监听的域名</div><div class="line"> location&#123;&#125;是用来匹配URI进行配置，URI即语法中的&apos;/uri/&apos;。location&#123;&#125;配置任何查询，因为</div><div class="line">素有请求都以/开头。</div><div class="line">root 指定对应uri的资源查找路径，这里html为相对路径,完整路径为/opt/nginx/nginx-1.9.3/html</div><div class="line">index指定首页index文件的名称，可用配置多个，以空格分开，如有多个，按配置顺序查找。</div><div class="line">error_page服务器发生错误请求时候，它会自动根据错误状态码跳转到相应的50页面。</div><div class="line">mime.types  定义的文件扩展名与文件类型映射关系</div><div class="line">fastcgi_params  ginx配置Fastcgi解析时会调用fastcgi_params配置文件来传递服务器变量，这样CGI中可以获取到这些变量的值。默认传递以下变量：</div><div class="line">uwsgi_params 与fastcgi_params一样，传递哪些服务器变量，只有前缀不一样，以uwsgi_param开始而非fastcgi_param。</div><div class="line">scgi_params 与fastcgi_params一样，传递哪些服务器变量，只有前缀不一样，以uwsgi_param开始而非fastcgi_param。</div><div class="line">koi-utf、koi-win、win-utf </div><div class="line">这三个文件都是与编码转换映射文件，用于在输出内容到客户端时，将一种编码转换到另一种编码。</div><div class="line">koi-win： charset_map  koi8-r &lt; -- &gt; windows-1251</div><div class="line">koi-utf： charset_map  koi8-r &lt; -- &gt; utf-8</div><div class="line">win-utf： charset_map  windows-1251 &lt; -- &gt; utf-8</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Redis 的安装</div><div class="line"></div><div class="line">wget http://download.redis.io/releases/redis-2.8.9.tar.gz 下载软件安装包</div><div class="line"> tar -zxvf redis-2.8.9.tar.gz -c /opt/nginx 解压到指定的目录</div><div class="line">cd /redis-2.8.9 切换到该目录下</div><div class="line">sudo make &amp; make install安装redis</div><div class="line">软件安装完毕，接下来我们可以测试是否安装成功</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">Tomcat + Redis + Nginx集群配置   </div><div class="line"></div><div class="line">1、wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.70/bin/apache-tomcat-7.0.70.tar.gz</div><div class="line"></div><div class="line">2、tar -zxvf  apache-tomcat-7.0.70.tar.gz , mv apache-tomcat-7.0.70 tomcat1</div><div class="line"></div><div class="line">3 、tar -zxvf  apache-tomcat-7.0.70.tar.gz ,mv apache-tomcat-7.0.70 tomcat2</div><div class="line"></div><div class="line">4、tar -zxvf  apache-tomcat-7.0.70.tar.gz, mv apache-tomcat-7.0.70 tomcat3</div><div class="line"></div><div class="line"> 5、修改tomcat2里的端口依次为8006 8081 8010 修改tomcat3里的端口依次为8007 8082 8011 </div><div class="line"></div><div class="line">6、之后我们创建一个文件夹test(mkdir test) 再创建一个index(vim index.jsp)内容如下</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page language=&quot;java&quot; %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;&lt;title&gt;TomcatA&lt;/title&gt;&lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line"></div><div class="line">    &lt;table align=&quot;centre&quot; border=&quot;1&quot;&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Session ID&lt;/td&gt;</div><div class="line">        &lt;td&gt;&lt;%= session.getId() %&gt;&lt;/td&gt;</div><div class="line">      &lt;/tr&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Created on&lt;/td&gt;</div><div class="line">        &lt;td&gt;&lt;%= session.getCreationTime() %&gt;&lt;/td&gt;</div><div class="line">     &lt;/tr&gt;</div><div class="line">    &lt;/table&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">sessionID:&lt;%=session.getId()%&gt;</div><div class="line">&lt;br&gt;</div><div class="line">SessionIP:&lt;%=request.getServerName()%&gt;</div><div class="line">&lt;br&gt;</div><div class="line">SessionPort:&lt;%=request.getServerPort()%&gt;</div><div class="line">&lt;%</div><div class="line">//为了区分，第二个可以是222</div><div class="line">out.println(&quot;This is Tomcat Server 1111&quot;);</div><div class="line">%&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">7、之后分别修改tomcat1 tomcat2 tomcat3的server.xml,在&lt;Host &gt;内为其指定web项目的路径</div><div class="line"></div><div class="line"> &lt;Context path=&quot;&quot; reloadable=&quot;true&quot; docBase=&quot;/opt/nginx/test&quot;/&gt;</div><div class="line"></div><div class="line">8、cd /usr/local/nginx/conf切换到nignx安装后的目录下，修改nginx.conf（vim nginx.conf）配置文件</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div></pre></td><td class="code"><pre><div class="line">#user nobody;</div><div class="line"> </div><div class="line"># 进程数，一般这个和cpu核心数相等</div><div class="line"> </div><div class="line">worker_processes 2;</div><div class="line"> </div><div class="line"># 错误日志配置</div><div class="line"> </div><div class="line">#error_log logs/error.log;</div><div class="line"> </div><div class="line">#error_log logs/error.log notice;</div><div class="line"> </div><div class="line">#error_log logs/error.log info;</div><div class="line"> </div><div class="line">	# pid 进程</div><div class="line"> </div><div class="line">#pid logs/nginx.pid;</div><div class="line"> </div><div class="line">#工作模式及连接数上限</div><div class="line">events &#123;</div><div class="line"> </div><div class="line">	# work 进程连接数</div><div class="line">	use epoll; </div><div class="line">	worker_connections 2048;</div><div class="line"></div><div class="line">    # 并发总数是 worker_processes 和 worker_connections 的乘积</div><div class="line">    # 即 max_clients = worker_processes * worker_connections</div><div class="line">    # 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4  为什么</div><div class="line">    # 为什么上面反向代理要除以4，应该说是一个经验值</div><div class="line">    # 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000</div><div class="line">    # worker_connections 值的设置跟物理内存大小有关</div><div class="line">    # 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数</div><div class="line">    # 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右</div><div class="line">    # 我们来看看360M内存的VPS可以打开的文件句柄数是多少：</div><div class="line">    # $ cat /proc/sys/fs/file-max</div><div class="line">    # 输出 34336</div><div class="line">    # 32000 &lt; 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内</div><div class="line">    # 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置</div><div class="line">    # 使得并发总数小于操作系统可以打开的最大文件数目</div><div class="line">    # 其实质也就是根据主机的物理CPU和内存进行配置</div><div class="line">    # 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。</div><div class="line">    # ulimit -SHn 65535</div><div class="line"></div><div class="line">&#125;</div><div class="line"> </div><div class="line"> </div><div class="line"> </div><div class="line">http &#123;</div><div class="line"></div><div class="line">    #设定mime类型,类型由mime.type文件定义</div><div class="line">	include mime.types;</div><div class="line"></div><div class="line">	default_type application/octet-stream;</div><div class="line"></div><div class="line">	#设定日志格式</div><div class="line">	#log_format main &apos;$remote_addr - $remote_user[$time_local] &quot;$request&quot; &apos;</div><div class="line"></div><div class="line">	# &apos;$status $body_bytes_sent&quot;$http_referer&quot; &apos;</div><div class="line"></div><div class="line">	# &apos;&quot;$http_user_agent&quot;&quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line"></div><div class="line">	#access_log logs/access.log main;</div><div class="line"></div><div class="line">	# 开启高效文件传输模式，调用sendfile 进行文件的传输，但一般为了和网速的io进行平衡，</div><div class="line"></div><div class="line">	#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，</div><div class="line">    #对于普通应用，必须设为 on,</div><div class="line">    #如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，</div><div class="line">    #以平衡磁盘与网络I/O处理速度，降低系统的uptime.</div><div class="line"></div><div class="line">	sendfile on;</div><div class="line"></div><div class="line">	#tcp_nopush on;</div><div class="line"></div><div class="line">    #连接超时时间</div><div class="line">	#keepalive_timeout 0;</div><div class="line"></div><div class="line">	keepalive_timeout 65;</div><div class="line"></div><div class="line">	tcp_nodelay     on;</div><div class="line"></div><div class="line">	# 是否开启gzip压缩输出</div><div class="line"></div><div class="line">	#开启zip网页压缩</div><div class="line">	gzip  on;</div><div class="line">	gzip_min_length 1k;</div><div class="line">	gzip_buffers 4 8k;</div><div class="line">	gzip_http_version 1.1;</div><div class="line">	gzip_types text/plain application/x-javascript text/css application/xml;</div><div class="line"></div><div class="line">    #设定请求缓冲</div><div class="line">    client_header_buffer_size    128k;</div><div class="line">    large_client_header_buffers  4 128k;</div><div class="line"></div><div class="line"></div><div class="line">	#负载均衡配置，nginx 是做反向代理的，访问nginx就是在访问负载均衡配置的这个server，这个可以通过log查看</div><div class="line"></div><div class="line">	# 查看的error log 从中可以清晰看到 负载均衡的地址：client: 127.0.0.1, server: localhost,request: &quot;GET /index.jsp # HTTP/1.1&quot;, upstream: &quot;http://127.0.0.1:18081/index.jsp&quot;, host: &quot;localhost&quot;</div><div class="line"></div><div class="line">	upstream localhost&#123;</div><div class="line"></div><div class="line">		#ip_hash iphash 实现负载均衡，这里使用了轮回的方式实现</div><div class="line"></div><div class="line">		# nginx 转发的后台tomcat服务器配置，以及其权重的配置，权重越大要承载的量越大</div><div class="line"></div><div class="line">		#ip_hash; #每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题</div><div class="line">		server localhost:8080 weight=1 max_fails=2 fail_timeout=30s;</div><div class="line"></div><div class="line">		server localhost:8081 weight=1 max_fails=2 fail_timeout=30s;</div><div class="line"></div><div class="line">		server localhost:8082 weight=1 max_fails=2 fail_timeout=30s;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	# 虚拟主机的配置</div><div class="line">	 </div><div class="line">	server &#123;</div><div class="line">	 </div><div class="line">		# 就是nginx服务的端口</div><div class="line">		 </div><div class="line">		listen 80;</div><div class="line">		 </div><div class="line">		#这个就是访问域名</div><div class="line">		 </div><div class="line">		server_name localhost;</div><div class="line">		 </div><div class="line">		# 字符编码的设置</div><div class="line">		 </div><div class="line">		charset utf-8;</div><div class="line">		 </div><div class="line"></div><div class="line">		#access_log logs/host.access.log main;</div><div class="line">		 </div><div class="line">		# 动静分离，动态的反向到负载均衡的tomcat上</div><div class="line">		 </div><div class="line">		 </div><div class="line">		location / &#123;</div><div class="line">			# nginx 的根目录，当发送静态请求时会默认到这个目录下去查找</div><div class="line">		    root /opt/nginx/test;</div><div class="line">		    #定义首页索引文件的名称</div><div class="line">	        index  index.html index.htm index.jsp index.do;</div><div class="line">	    &#125;   </div><div class="line"></div><div class="line">		#error_page 404 /404.html;</div><div class="line">	    # 定义错误提示页面 /50x.html</div><div class="line"></div><div class="line"></div><div class="line">	    error_page 500 502 503 504 /50x.html;</div><div class="line"></div><div class="line">	    location = /50x.html &#123;</div><div class="line">	    	#root html;</div><div class="line">	    &#125;</div><div class="line"></div><div class="line"></div><div class="line">	    # 静态页面由 nginx处理</div><div class="line"></div><div class="line">	     location ~ ^/(images|javascript|js|css|flash|media|static)/ &#123;</div><div class="line"></div><div class="line"> 			#过期30天，静态文件不怎么更新，过期可以设大一点，</div><div class="line">            #如果频繁更新，则可以设置得小一点。</div><div class="line"></div><div class="line">	    	#expires 30d;</div><div class="line"></div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    #jsp,do等页面交由tomcat处理</div><div class="line">	    location ~ \.(jsp|do)$ &#123;</div><div class="line"></div><div class="line">	    	# 代理路径，和负载均衡的 upstream localhost 这个localhost路径是一致的，但http是不能忘！</div><div class="line"></div><div class="line">			proxy_pass http://localhost;</div><div class="line">	        proxy_redirect          off;    </div><div class="line">	        proxy_set_header        Host            $host;    </div><div class="line">	        proxy_set_header        X-Real-IP       $remote_addr;    </div><div class="line">	        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;    </div><div class="line">	        client_max_body_size    10m;    </div><div class="line">	        client_body_buffer_size 128k;    </div><div class="line">	        proxy_buffers           32 4k;  </div><div class="line">	        proxy_connect_timeout   3;    </div><div class="line">	        proxy_send_timeout      30;    </div><div class="line">	        proxy_read_timeout      30;   </div><div class="line">	        </div><div class="line">		&#125;</div><div class="line"></div><div class="line">	 </div><div class="line">	    #禁止访问 .htxxx 文件</div><div class="line">        location ~ /.ht &#123;</div><div class="line">            deny all;</div><div class="line">        &#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">9、cd ../sbin/ 切换到启动命令文件夹下，执行sudo ./nginx -t测试配置文件配置是否有误如果提示成功，我们分别启动tomcat1 tomcat2 tomcat3,</div><div class="line">     再执行sudo ./nginx 启动nginx,然后访问http://localhost,不断f5刷新，可以看到访问被分配到不同的tomcat，这样就起到负载均衡的作用，如果</div><div class="line">     我们尝试把tomcat1关掉，访问就被分配到剩下的两个tomcat下，但是有一个问题，就是每次访问不到不同的tomcat，session就发生了变化，</div><div class="line">     这时后我们可以采用redis来做session共享。</div><div class="line">      </div><div class="line">     </div><div class="line">10、Tomcat 结合 Redis做session共享需要jedis-2.8.1.jar  commons-pool2-2.4.2.jar tomcat-redis-session-manager-2.0.0.jar这几个包，</div><div class="line">jedis-2.8.1.jar  commons-pool2-2.4.2.jar 可以从http://mvnrepository.com/ 上下载， tomcat-redis-session-manager-2.0.0.jar这个包比较</div><div class="line">麻烦，需要自己用gradle编译，因为tomcat-redis-session-manager的作者把源码开放到git上，打包方式是gradle,编译方式如下:</div><div class="line">       1、 如果自己系统上没有gradle，请先安装gradle, sudo apt-get install gradle,</div><div class="line">         2、git clone https://github.com/jcoleman/tomcat-redis-session-manager.git</div><div class="line">         3、修改build.gradle，在signing节点中添加required = false以及删掉或注释掉文件中的sonatype的repository代码即可</div><div class="line">         4、执行gradle build,编译结束后生成build，在里面的libs文件夹下可以找到 tomcat-redis-session-manager-2.0.0.jar这个包</div><div class="line"></div><div class="line">11、分别把jedis-2.8.1.jar  commons-pool2-2.4.2.jar tomcat-redis-session-manager-2.0.0.jar复制到 tomcat1 tomct2 tomcat3的libs目录下，</div><div class="line"></div><div class="line">  再一次修改tomcat1 tomcat2 tomcat3的conf里的 context.xml 文件，在里头的context节点里增加如下内容</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;Valve className=&quot;com.orangefunction.tomcat.redissessions.RedisSessionHandlerValve&quot; /&gt;</div><div class="line"></div><div class="line">  &lt;Manager className=&quot;com.orangefunction.tomcat.redissessions.RedisSessionManager&quot;</div><div class="line"></div><div class="line">   host=&quot;localhost&quot;</div><div class="line"></div><div class="line">   port=&quot;6379&quot;</div><div class="line"></div><div class="line">   database=&quot;10&quot;</div><div class="line"></div><div class="line">   maxInactiveInterval=&quot;60&quot;/&gt;</div></pre></td></tr></table></figure>
+<pre><code>11、最后，启动redis,tomcat1,tomcat2,tomcat3,nginx,访问http://localhost,不断按f5刷新，可以看到都是同样内容，除非关闭浏览器再重新启动才能看到session id的变化，说明已经实现了 tomcat集群和session共享。
+</code></pre>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/23/ubuntu-Nginx+Tomcat+redis集群配置/" class="archive-article-date">
+  	<time datetime="2016-10-23T14:54:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/22/ubuntu-sublime-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu -Sublime-安装</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ubuntu-Nginx+Tomcat+redis集群配置" data-title="ubuntu-Nginx+Tomcat+redis集群配置" data-url="http://yoursite.com/2016/10/23/ubuntu-Nginx+Tomcat+redis集群配置/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"coding99"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 bee.gs 博客
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">bee.gs:&lt;br&gt;一名大自然的搬运工人&lt;br&gt;每天都有搬不完的砖块。</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
