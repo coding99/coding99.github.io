@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 安装 | bee.gs的博客</title>
+  <title>Ubuntu -Jdk-Mysql安装 | bee.gs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一名大自然的搬运工人,每天都有搬不完的砖块">
-<meta property="og:type" content="website">
-<meta property="og:title" content="bee.gs的博客">
-<meta property="og:url" content="http://yoursite.com/tags/安装/index.html">
+  <meta name="description" content="ubuntu下的Jdk Mysql安装 软件环境 ：
+ 操作系统：Ubuntu 14.04.2 LTS（cat /etc/issue） x86_64（uname -m）
+ JAVA版本：jdk-7u71-linux-x64.tar.gz
+ 软件下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-21">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu -Jdk-Mysql安装">
+<meta property="og:url" content="http://yoursite.com/2016/10/23/ubuntu-jdk-mysql/index.html">
 <meta property="og:site_name" content="bee.gs的博客">
-<meta property="og:description" content="一名大自然的搬运工人,每天都有搬不完的砖块">
+<meta property="og:description" content="ubuntu下的Jdk Mysql安装 软件环境 ：
+ 操作系统：Ubuntu 14.04.2 LTS（cat /etc/issue） x86_64（uname -m）
+ JAVA版本：jdk-7u71-linux-x64.tar.gz
+ 软件下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-21">
+<meta property="og:updated_time" content="2016-10-30T09:44:14.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bee.gs的博客">
-<meta name="twitter:description" content="一名大自然的搬运工人,每天都有搬不完的砖块">
+<meta name="twitter:title" content="Ubuntu -Jdk-Mysql安装">
+<meta name="twitter:description" content="ubuntu下的Jdk Mysql安装 软件环境 ：
+ 操作系统：Ubuntu 14.04.2 LTS（cat /etc/issue） x86_64（uname -m）
+ JAVA版本：jdk-7u71-linux-x64.tar.gz
+ 软件下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-21">
   
     <link rel="alternative" href="/atom.xml" title="bee.gs的博客" type="application/atom+xml">
   
@@ -157,86 +167,133 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-ubuntu-jdk-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/23/ubuntu-jdk-mysql/" class="archive-article-date">
-  	<time datetime="2016-10-23T15:23:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/23/ubuntu-jdk-mysql/">Ubuntu -Jdk-Mysql安装</a>
+    <h1 class="article-title" itemprop="name">
+      Ubuntu -Jdk-Mysql安装
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ubuntu下的Jdk-Mysql安装"><a href="#ubuntu下的Jdk-Mysql安装" class="headerlink" title="ubuntu下的Jdk Mysql安装"></a>ubuntu下的Jdk Mysql安装</h2><p> 软件环境 ：</p>
+<p> 操作系统：Ubuntu 14.04.2 LTS（cat /etc/issue） x86_64（uname -m）</p>
+<p> JAVA版本：jdk-7u71-linux-x64.tar.gz</p>
+<p> 软件下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<p> 也可以在线下载（由于oracle下载需要选择确认，所以我们下载时需要设置请求头的Cookie）：<br> wget –no-check-certificate –no-cookies –header “Cookie: oraclelicense=accept-securebackup-cookie”  <a href="http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz" target="_blank" rel="external">http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz</a></p>
+ <a id="more"></a>
+<p> 安装软件的方法如下：<br>  1、切换到root用户 sudo su 输入密码<br>   2、mkdir /usr/local/Java 创建jdk存放的文件夹叫java<br>   3、cp jdk-7u71-Linux-x64.tar.gz /usr/local/java 复制jdk到指定文件<br>  4、tar -zxvf jdk-7u71-linux-x64.tar.gz 解压jdk<br>   5、chmod -R 777 /usr/local/java 更改文件夹的权限，让任何操作者都可以访问<br>   6、设置环境变量 ，ubuntu设置环境变量的文件有哪些？</p>
+<p> /etc/profile:<br>  在登录时,操作系统定制用户环境时使用的第一个文件,此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行。<br>/etc/environment在登录时操作系统使用的第二个文件,系统在读取你自己的profile前,设置环境文件的环境变量；<br>/etc/bashrc<br> —— 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取；<br>~/.profile<br> —— 每个用户都可使用该文件输入专用于自己使用的shell信息，当用户登录时，该文件仅仅执行一次！默认情况下,它设置一些环境变量,执行用户的.bashrc文件；<br>~/.bashrc<br> —— 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取<br>这时候我们可选择修改/etc/profile文件<br>vim /etc/profile件<br>加入一下环境变量<br>#<br> java enviroment</p>
+<p>export JAVA_HOME=/usr/local/java/jdk1.7.0_71</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH</p>
+<p>export PATH=$JAVA_HOME/bin:$PATH<br>按下esc<br> 输入wq<br> 7、让环境变量立即生效 source /etc/profile<br>8、设置默认JDK<br>sudo<br> update-alternatives –install “/usr/bin/java” “java” “/usr/local/java/jdk1.7.0_71/bin/java” 300</p>
+<p>sudo update-alternatives –install “/usr/bin/javac” “javac” “/usr/local/java/jdk1.7.0_71/bin/javac”<br> 300</p>
+<p>sudo update-alternatives –install “/usr/bin/javaws” “javaws” “/usr/local/java/jdk1.7.0_71/bin/javaws”<br> 300</p>
+<p>9、测试 java -version显示jdk版本配置成功<br>java version “1.7.0_71”</p>
+<p>Java(TM) SE Runtime Environment (build 1.7.0_71-b14)</p>
+<p>Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)<br>查看环境变量可以echo<br> $JAVA_HOME显示=/usr/local/java/jdk1.7.0_71</p>
+<p>ubuntu下的Mysql安装</p>
+<p> 1、跟新源，sudo<br> apt-get update<br>2、首先检查系统中是否已经安装了MySQL<br>      在终端输入sudo netstat -tap|grep mysql 如果没有反应则未安装，如果已经安装则显示<br>       tcp        0      0 localhost:mysql         <em>:</em>                     LISTEN<br> 3、如果没有安装，则安装MySQL.<br>     在终端输入 sudo apt-get install mysql-server mysql-client<br>     在此安装过程中会让你输入root用户(管理MySQL数据库用户，非Linux系统用户)密码，按照要求输入即可。如下所示<br> 4、如何判断mysql是否安装成功<br>      输入sudo service mysql restart   如果成功则显示mysql启动成功<br> 5、登陆mysql,在终端输入mysql -u root -p 输入刚刚设置的密码即可登陆mysql</p>
+<p>ubuntu下的Mysql卸载</p>
+<p>Mysql卸载一定要卸载干净，避免再次安装时出现莫名奇妙的错误</p>
+<p>   1、sudo apt-get autoremove mysql* –purge<br>    2、sudo rm /var/lib/mysql/ -R<br>   3、sudo rm /etc/mysql/ -R</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/23/ubuntu-jdk-mysql/" class="archive-article-date">
+  	<time datetime="2016-10-23T15:23:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-23</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安装/">安装</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/22/ubuntu-sublime-install/" class="archive-article-date">
-  	<time datetime="2016-10-21T17:01:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/22/ubuntu-sublime-install/">Ubuntu -Sublime-安装</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安装/">安装</a></li></ul>
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/24/ubuntu-Nginx+Tomcat+redis集群配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ubuntu-Nginx+Tomcat+Redis集群配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/22/ubuntu-sublime-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu -Sublime-安装</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ubuntu-jdk-mysql" data-title="Ubuntu -Jdk-Mysql安装" data-url="http://yoursite.com/2016/10/23/ubuntu-jdk-mysql/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"coding99"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
       </div>
@@ -259,9 +316,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
