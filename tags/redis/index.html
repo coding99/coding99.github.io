@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   
+  <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Tag: redis | bee.gs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一名大自然的搬运工人,每天都有搬不完的砖块">
@@ -19,9 +21,9 @@
     <link rel="alternative" href="/atom.xml" title="bee.gs的博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/assets/img/head/bee.ico">
+    <link rel="icon" href="assets/img/head/bee.ico">
   
-  <script src="/style.js"></script>
+  <link rel="stylesheet" href="/main.css">
   
 
   
@@ -69,7 +71,7 @@
 	        
 				<li><a href="/archives">归档</a></li>
 	        
-				<li><a href="/instagram">相册</a></li>
+				<li><a href="/photos">相册</a></li>
 	        
 			</ul>
 		</nav>
@@ -87,12 +89,9 @@
     			
             
     			
-    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
-    			
-    			
             
     			
-    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
     			
     			
             
@@ -100,9 +99,9 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="weibo" target="_blank" href="http://blog.csdn.net/coding99" title="weibo">weibo</a>
+					<a class="github" target="_blank" href="#" title="github">github</a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 		        
 					<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
 		        
@@ -138,16 +137,16 @@
 		        
 					<li><a href="/archives">归档</a></li>
 		        
-					<li><a href="/instagram">相册</a></li>
+					<li><a href="/photos">相册</a></li>
 		        
 				</ul>
 			</nav>
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="weibo" target="_blank" href="http://blog.csdn.net/coding99" title="weibo">weibo</a>
+						<a class="github" target="_blank" href="#" title="github">github</a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 			        
 						<a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
 			        
@@ -232,8 +231,9 @@
 		isArchive: false,
 		isTag: true,
 		isCategory: false,
-		open_in_new: false,
-		root: "/"
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
 	}
 </script>
 
@@ -249,8 +249,6 @@
     
       <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
     
-    
-      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
     
     
       <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
@@ -270,10 +268,6 @@
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends">
-  		
-    	</section>
     
 
     
@@ -316,7 +310,7 @@
 
                 <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
-                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
 
                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
