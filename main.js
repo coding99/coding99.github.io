@@ -530,8 +530,18 @@
     var o = function (e) {
         for (var t = "", n = 0, o = e.list.length; n < o; n++) {
             for (var i = e.list[n].arr, r = "", a = 0, s = i.link.length; a < s; a++) {
-                var c = "http://120.24.181.238/ins/" + i.link[a], l = i.type[a], p = c + ("video" === l ? ".mp4" : ".jpg");
-                c += ".jpg", r += '<li>\t\t\t\t\t\t\t\t<div class="img-box">\t\t\t\t\t\t\t\t\t<a class="img-bg" rel="example_group" href="' + c + '" title="' + i.text[a] + '" data-type="' + l + '" data-target="' + p + '"></a>\t\t\t\t\t\t\t\t\t<img lazy-src="' + c + '">\t\t\t\t\t\t\t\t\t<i class="icon icon-hour-glass"></i>\t\t\t\t\t\t\t\t</div>\t\t\t\t\t\t\t</li>'
+                /*图片地址*/
+               // var c = "http://120.24.181.238/ins/" + i.link[a], 
+                var c =  i.src[a],
+                l = i.type[a], 
+                p = c + ("video" === l ? ".mp4" : ".jpg");
+
+                c += ".jpg", 
+                r += '<li>\t\t\t\t\t\t\t\t<div class="img-box">\t\t\t\t\t\t\t\t\t<a class="img-bg" rel="example_group" href="' 
+                + c + '" title="' + i.text[a] + '" data-type="' + l + '" data-target="' + p + '"></a>\t\t\t\t\t\t\t\t\t<img lazy-src="' + c + '">\t\t\t\t\t\t\t\t\t"';
+                if("video" === l) {
+                        r +=     '<i class="icon-film" style="color: rgb(255, 255, 255); font-size: 26px; position: absolute; right: 10px; bottom: 10px; z-index: 100;"></i>';
+                }
             }
             t = t + '<section class="archives album"><h1 class="year">' + i.year + "<em>" + i.month + '月</em></h1>\t\t\t\t<ul class="img-box-ul">' + r + "</ul>\t\t\t\t</section>"
         }
@@ -539,20 +549,22 @@
     };
     e.exports = {init: function () {
         o({list: [
-            {date: "2015-11", arr: {
-                year: 2015,
-                month: 11,
-                src:["https://scontent.cdninstagram.com/hphotos-xft1/t51.2885-15/s640x640/sh0.08/e35/12269862_894338194013437_1805169379_n.jpg",
-                 "https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-15/s640x640/sh0.08/e35/12276891_172191463131445_911534090_n.jpg",
-                 "https://scontent.cdninstagram.com/hphotos-xtp1/t51.2885-15/s640x640/sh0.08/e35/12237527_913338585386151_2037194016_n.jpg"],
-                link: ["-tqoLXo7v-", "-qKfKxo7nw", "-nE5BQo7uP"],
-                text: ["雪上鸦飞",
-                    "行走于结了冰的松花江上，遇到一群放生的人。佛经飘扬，鱼虾入河，河面转瞬又恢复了平静。而后在饭店，服务员说我们的鱼，就来自这松花江里。\n\n佛的安排奇妙又令人啼笑，鱼让俩群不同的人都收获了快乐？那么我想，鱼就是佛",
-                    "月上枝头"],
-                type: ["image", "image", "image"]}},
-            {date: "2015-10", arr: {year: 2015, month: 10, src: ["https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s640x640/sh0.08/e35/12145229_1722399741326075_2063247708_n.jpg", "https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s640x640/sh0.08/e35/12080493_892409564169375_1626542651_n.jpg", "https://scontent.cdninstagram.com/hphotos-xtp1/t51.2885-15/s640x640/sh0.08/e35/11849199_203248513340142_1615092499_n.jpg",
-                "https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/e15/12132912_162625974083441_1400003063_n.jpg", "https://scontent.cdninstagram.com/hphotos-xpt1/t51.2885-15/s640x640/sh0.08/e35/12135478_1700175696879683_933151519_n.jpg"], link: ["9VYE8YI7sk", "9BkX3xo7od", "8-Ba4MI7lt", "88Neujo7r2", "8uKqhDo7vp"], text: ["在路上", "11点的时候，不想睡，借一只手电，一人夜游古村。这事情很刺激，转角遇到的神像，榕树的垂枝，摇曳的灯笼，自己投射到土楼的巨大影子，莫名的恐惧自心底升起。然而后来又不怕了，却总是想起以前去的思溪源村…with my friends", "古城的砖瓦年代久了，就很容易长出猫来", "以前吉他老师说，对于一首天空之城，听过与弹过是完全不一样的。弹过后才知道，从开始的吉他2品就一直在递增，仿佛自身也在飞翔，云层渐开，空城显现，情绪是那么容易被调动。然而我的水平只够感动自己，要抓紧时间努力学习了。不说了，玩游戏去了", "海上日出"], type: ["image", "image", "image", "video", "image"]}}
-        ]}), $(".open-ins").html("图片同步自instagram")
+
+            {date: "2016-09", arr: {
+                year: 2016,
+                month: 19,
+                src:["/assets/img/photos/school-sun1",
+                     "/assets/img/photos/school-sun2",
+                    "/assets/video/201610"],
+                link: ['','',''],
+                text: ["多少年前，学校的太阳啊1",
+                         "多少年前，学校的太阳啊2",
+                         '2016nba总决赛'],
+                type: ["image", "image","video"]}
+            }
+
+        ]})
+        //$(".open-ins").html("图片同步自instagram")
     }}
 }, function (e, t, n) {
     var o, i;
