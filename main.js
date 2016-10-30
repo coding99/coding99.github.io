@@ -550,9 +550,9 @@
     e.exports = {init: function () {
         o({list: [
 
-            {date: "2016-09", arr: {
+            {date: "2016-10", arr: {
                 year: 2016,
-                month: 19,
+                month: 10,
                 src:["/assets/img/photos/school-sun1",
                      "/assets/img/photos/school-sun2",
                     "/assets/video/201610"],
