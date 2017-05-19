@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bee.gs/"/>
-  <updated>2016-12-27T14:58:17.249Z</updated>
+  <updated>2017-05-19T11:24:57.300Z</updated>
   <id>http://bee.gs/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://bee.gs/2017/05/18/feel/life-170508/"/>
+    <id>http://bee.gs/2017/05/18/feel/life-170508/</id>
+    <published>2017-05-18T12:00:00.000Z</published>
+    <updated>2017-05-19T11:24:57.300Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="people-run"><a href="#people-run" class="headerlink" title="people.run"></a>people.run</h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=2920947&auto=1&height=66"></iframe>
+
+<h3 id="还记得我的-people-run"><a href="#还记得我的-people-run" class="headerlink" title="还记得我的  people.run"></a>还记得我的  <a href="http://people.run" target="_blank" rel="external">people.run</a></h3><h3 id="不知道啥时候才有精力去弄"><a href="#不知道啥时候才有精力去弄" class="headerlink" title="不知道啥时候才有精力去弄"></a>不知道啥时候才有精力去弄</h3><h3 id="也许是很多年后的事了"><a href="#也许是很多年后的事了" class="headerlink" title="也许是很多年后的事了"></a>也许是很多年后的事了</h3><p><img src="/assets/img/article/run.jpg" alt="img8"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;people-run&quot;&gt;&lt;a href=&quot;#people-run&quot; class=&quot;headerlink&quot; title=&quot;people.run&quot;&gt;&lt;/a&gt;people.run&lt;/h2&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; margi
+    
+    </summary>
+    
+    
+      <category term="life" scheme="http://bee.gs/tags/life/"/>
+    
+  </entry>
   
   <entry>
     <title>自定义功能模块设计</title>
