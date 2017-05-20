@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bee.gs/"/>
-  <updated>2017-05-19T11:24:57.300Z</updated>
+  <updated>2017-05-20T01:43:08.561Z</updated>
   <id>http://bee.gs/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://bee.gs/2017/05/18/feel/life-170508/"/>
-    <id>http://bee.gs/2017/05/18/feel/life-170508/</id>
+    <title>people.run</title>
+    <link href="http://bee.gs/2017/05/18/feel/life-run/"/>
+    <id>http://bee.gs/2017/05/18/feel/life-run/</id>
     <published>2017-05-18T12:00:00.000Z</published>
-    <updated>2017-05-19T11:24:57.300Z</updated>
+    <updated>2017-05-20T01:43:08.561Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="people-run"><a href="#people-run" class="headerlink" title="people.run"></a>people.run</h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=2920947&auto=1&height=66"></iframe>
+    <content type="html"><![CDATA[<h2 id="people-run"><a href="#people-run" class="headerlink" title="people.run"></a>people.run</h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=2920947&auto=0&height=66"></iframe>
 
 <h3 id="还记得我的-people-run"><a href="#还记得我的-people-run" class="headerlink" title="还记得我的  people.run"></a>还记得我的  <a href="http://people.run" target="_blank" rel="external">people.run</a></h3><h3 id="不知道啥时候才有精力去弄"><a href="#不知道啥时候才有精力去弄" class="headerlink" title="不知道啥时候才有精力去弄"></a>不知道啥时候才有精力去弄</h3><h3 id="也许是很多年后的事了"><a href="#也许是很多年后的事了" class="headerlink" title="也许是很多年后的事了"></a>也许是很多年后的事了</h3><p><img src="/assets/img/article/run.jpg" alt="img8"></p>
 ]]></content>
@@ -72,7 +72,7 @@
     <link href="http://bee.gs/2016/11/25/tech/java-springmvc%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E6%9E%B6%E6%9E%84%E5%9B%BE%E8%AE%BE%E8%AE%A1/"/>
     <id>http://bee.gs/2016/11/25/tech/java-springmvc项目搭建架构图设计/</id>
     <published>2016-11-24T16:00:00.000Z</published>
-    <updated>2016-12-27T14:58:17.249Z</updated>
+    <updated>2017-05-20T01:42:41.977Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Java-springmvc-项目搭建架构图"><a href="#Java-springmvc-项目搭建架构图" class="headerlink" title="Java-springmvc-项目搭建架构图"></a>Java-springmvc-项目搭建架构图</h2><p>项目搭建架构图在线地址<a href="http://www.processon.com/view/582f2488e4b0645c0ec38987" target="_blank" rel="external">点击查看架构图</a></p>
 ]]></content>
@@ -290,11 +290,11 @@
     
       <category term="Linux" scheme="http://bee.gs/tags/Linux/"/>
     
+      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
+    
       <category term="Jdk" scheme="http://bee.gs/tags/Jdk/"/>
     
       <category term="Mysql" scheme="http://bee.gs/tags/Mysql/"/>
-    
-      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
@@ -343,9 +343,9 @@
     
       <category term="Linux" scheme="http://bee.gs/tags/Linux/"/>
     
-      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
-    
       <category term="Sublime" scheme="http://bee.gs/tags/Sublime/"/>
+    
+      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
