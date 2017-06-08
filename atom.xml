@@ -290,11 +290,11 @@
     
       <category term="Linux" scheme="http://bee.gs/tags/Linux/"/>
     
-      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
-    
       <category term="Jdk" scheme="http://bee.gs/tags/Jdk/"/>
     
       <category term="Mysql" scheme="http://bee.gs/tags/Mysql/"/>
+    
+      <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
@@ -343,9 +343,9 @@
     
       <category term="Linux" scheme="http://bee.gs/tags/Linux/"/>
     
-      <category term="Sublime" scheme="http://bee.gs/tags/Sublime/"/>
-    
       <category term="安装" scheme="http://bee.gs/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="Sublime" scheme="http://bee.gs/tags/Sublime/"/>
     
   </entry>
   
