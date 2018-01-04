@@ -49,43 +49,20 @@
     
     
   <url>
-    <loc>http://bee.gs/2016/10/24/tech/ubuntu-Nginx+Tomcat+redis%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://bee.gs/2016/10/23/tech/ubuntu-jdk-mysql/</loc>
     <lastmod>2016-12-27T14:58:17.249Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu-Nginx+Tomcat+Redis集群配置</title>
-        <pubTime>2016-10-24T14:54:00.000Z</pubTime>
+        <title>Ubuntu -Jdk-Mysql安装</title>
+        <pubTime>2016-10-23T15:23:00.000Z</pubTime>
         
         <tag>Ubuntu</tag>
          
         <tag>Linux</tag>
          
-        <tag>Nginx</tag>
+        <tag>Jdk</tag>
          
-        <tag>Tomcat</tag>
-         
-        <tag>Redis - 安装</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://bee.gs/2016/10/22/tech/ubuntu-sublime-install/</loc>
-    <lastmod>2016-12-27T14:58:17.249Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu -Sublime-安装</title>
-        <pubTime>2016-10-21T17:01:00.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>Sublime</tag>
+        <tag>Mysql</tag>
          
         <tag>安装</tag>
          
@@ -141,6 +118,31 @@
 
     
   <url>
+    <loc>http://bee.gs/2016/10/24/tech/ubuntu-Nginx+Tomcat+redis%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2016-12-27T14:58:17.249Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu-Nginx+Tomcat+Redis集群配置</title>
+        <pubTime>2016-10-24T14:54:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Nginx</tag>
+         
+        <tag>Tomcat</tag>
+         
+        <tag>Redis - 安装</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://bee.gs/2016/11/24/tech/java-springmvc+ehcache%E7%BC%93%E5%AD%98%E5%AE%9E%E7%8E%B0/</loc>
     <lastmod>2016-12-27T14:58:17.249Z</lastmod>
     <data>
@@ -164,12 +166,12 @@
 
     
   <url>
-    <loc>http://bee.gs/2016/10/23/tech/ubuntu-jdk-mysql/</loc>
+    <loc>http://bee.gs/2016/10/22/tech/ubuntu-sublime-install/</loc>
     <lastmod>2016-12-27T14:58:17.249Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu -Jdk-Mysql安装</title>
-        <pubTime>2016-10-23T15:23:00.000Z</pubTime>
+        <title>Ubuntu -Sublime-安装</title>
+        <pubTime>2016-10-21T17:01:00.000Z</pubTime>
         
         <tag>Ubuntu</tag>
          
@@ -177,9 +179,7 @@
          
         <tag>安装</tag>
          
-        <tag>Jdk</tag>
-         
-        <tag>Mysql</tag>
+        <tag>Sublime</tag>
          
          
            
